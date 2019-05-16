@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>Produtos</title>
+</head>
+<body>
+	<div style="margin: 10px">
+			<h1>Lista de Produtos</h1>
+		<form method="POST" th:object="${produto}"
+			th:action="@{/produto}"	style="margin: 20px 0">
+				<input type="text" placeholder="Nome"
+					th:field="*{nome}" /> 
+				<input type="text" placeholder="valor" th:field="*{valor}" />
+				<button type="submit">Adicionar</button>
+		</form>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Nome</th>
+						<th>Valor</th>
+						<th>Remover</th>
+						<th>Alterar</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="produto : ${produtos}">
+						<td th:text="${produto.id}"></td>
+						<td th:text="${produto.nome}"></td>
+						<td th:text="${produto.valor}"></td>
+						<td><button formmethod="DELETE" value="${produto}" 
+								type="submit">Delete</button></td>
+						<td><button formmethod="GET" value="${produto}" 
+								type="submit">Altera</button></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+</body>
+</html>
